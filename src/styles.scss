@@ -1,1 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  //background: linear-gradient(67.59deg, #065B91 2.51%, #0071B9 45.46%, #A8DAFB 111.06%);
+  background-image: url("assets/background.svg");
+  background-repeat: no-repeat;
+}
+.btns{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  background: linear-gradient(90deg, #CF3B21 9.01%, #ECC025 93.95%);
+  border-radius: 8px;
+  color: #FFFFFF;
+}
