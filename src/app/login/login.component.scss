@@ -1,0 +1,44 @@
+main{
+  background-image: url("../../assets/bg-login.png");
+  background-repeat: no-repeat;
+  height: 500px;
+  padding: 5%;
+  background-position-x: 305px;
+  background-position-y: -70px;
+  form{
+    box-sizing: border-box;
+    //width: 400px;
+    background: linear-gradient(150.9deg, rgba(255, 255, 255, 0.528) 6.97%, rgba(255, 255, 255, 0.336) 17.19%, rgba(255, 255, 255, 0.144) 43.04%, rgba(255, 255, 255, 0.234) 68.92%, rgba(255, 255, 255, 0.186) 94.89%);
+    border: 1px solid rgba(255, 255, 255, 0.20);
+    backdrop-filter: blur(13px);
+
+    /* Note: backdrop-filter has minimal browser support */
+    border-radius: 20px;
+    img{
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 20%;
+    }
+    input[type="email"],[type="password"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      padding: 8px 18px;
+      height: 50px;
+      background: #FFFFFF;
+      border-radius: 8px;
+      margin-bottom: 2.2rem;
+    }
+    .btn-connexion{
+    }
+  }
+}
+@media screen and (min-width:1000px) {
+  main{
+    height: 900px;
+    form{
+      width: 50%;
+    }
+  }
+}

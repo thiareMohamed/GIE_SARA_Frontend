@@ -1,0 +1,82 @@
+.menu{
+  position: absolute;
+  top: 15px;
+  left: 10px;
+  height: 45px;
+  width: 45px;
+  transition: left 0.4s ease;
+  //z-index: 5;
+  i{
+    color: white;
+    font-size: 50px;
+    line-height: 30px;
+  }
+}
+.sidebar{
+  background: linear-gradient(150.9deg, rgba(255, 255, 255, 0.528) 6.97%, rgba(255, 255, 255, 0.336) 17.19%, rgba(255, 255, 255, 0.144) 43.04%, rgba(255, 255, 255, 0.234) 68.92%, rgba(255, 255, 255, 0.186) 94.89%);
+  border: 2px solid rgba(255, 255, 255, 0.31);
+  backdrop-filter: blur(13px);
+  width: auto;
+  position: fixed;
+  transition: left 0.4s ease;
+  //z-index: 4;
+  nav{
+    .entete{
+      border-bottom: 1px solid rgba(255, 255, 255, 0.31);
+    }
+    ul{
+      margin-top: 50px;
+      padding-bottom: 130px;
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 40px;
+      .active{
+        background-color: rgba(255, 255, 255, 0.19);
+        border: 1px rgba(255, 255, 255, 0.04) solid;
+        border-radius: 5px;
+      }
+      li{
+        margin-left: 5px;
+        padding: 20px 60px 20px 30px;
+        a{
+          padding: 20px;
+          color: #FFFFFF;
+          text-decoration: none;
+          font-size: 20px;
+          transition: .5s;
+          i{
+            color: #FFFFFF;
+          }
+        }
+
+      }
+      li a:hover{
+        padding-left: 20px;
+      }
+    }
+    .deconnexion{
+      border-top: 1px solid rgba(255, 255, 255, 0.31);
+      padding: 50px;
+      list-style-type: none;
+      li{
+        margin-left: 5px;
+        a{
+          color: #FFFFFF;
+          text-decoration: none;
+          font-size: 20px;
+          transition: .5s;
+          i{
+            color: #FFFFFF;
+          }
+        }
+
+      }
+      li a:hover{
+        padding-left: 20px;
+      }
+    }
+  }
+}
+main{
+}
