@@ -10,6 +10,7 @@ import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { FacturationComponent } from './facturation/facturation.component';
 import { CompteurComponent } from './compteur/compteur.component';
 import {RouterModule, Routes} from "@angular/router";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {RouterModule, Routes} from "@angular/router";
       {path:"facture", component: FacturationComponent},
       {path:"compteur", component: CompteurComponent},
       {path:"login", component: LoginComponent}
-    ])
+    ]),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

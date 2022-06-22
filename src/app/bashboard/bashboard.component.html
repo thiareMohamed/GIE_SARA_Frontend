@@ -1,5 +1,7 @@
+<!--<button class="btn btn-light" (click)="onClick()"> bouton</button>-->
+
 <div class="container-fluid row">
-  <section class="col-md-2 col-lg-2 bg-danger">
+  <section class="col-md-1 col-lg-2" id="section">
     <div class="btn menu" [ngStyle]="{left: onMenuClick()}"  (click)="onMenuClick()">
       <i class="bi bi-list"></i>
     </div>
@@ -61,8 +63,7 @@
     </div>
   </section>
 
-  <main class="col-auto w-100">
+  <main class="col blog">
     <router-outlet></router-outlet>
   </main>
-
 </div>
