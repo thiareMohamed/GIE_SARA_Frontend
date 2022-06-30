@@ -63,23 +63,30 @@
     <div class="modal-body">
       <form [formGroup]="userForm">
 
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <select class="form-control mb-3" formControlName="sexe">
+          <option hidden disabled selected>Sexe</option>
+          <option value="M">Masculin</option>
+          <option value="F">Féminin</option>
+        </select>
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+        <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
+        <input type="password" class="form-control mb-3" placeholder="Mot de passe" formControlName="password">
       </form>
-      <input type="text" class="form-control mb-3" placeholder="Prenom" required>
-      <input type="text" class="form-control mb-3" placeholder="Nom" required>
-      <input type="date" class="form-control mb-3" placeholder="Date de Naissqance" required>
-      <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" required>
-      <select class="form-control mb-3" required>
-        <option value="">Sexe</option>
-        <option value="M">Masculin</option>
-        <option value="F">Féminin</option>
-      </select>
-      <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" required>
-      <input type="password" class="form-control mb-3" placeholder="Mot de passe" required>
-      <input type="email" class="form-control mb-3" placeholder="Email" required>
-      <input type="number" class="form-control mb-3" placeholder="Numéro d'identite national" required>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btns m-auto w-100 text-light" (click)="c('Save click')">Ajouter</button>
+      <button type="button"
+              class="btn btns m-auto w-100 text-light"
+              [disabled]="userForm.invalid"
+              (click)="c('Save click')"
+              (click)="showUtilisateur()">
+        Ajouter
+
+      </button>
     </div>
   </div>
 </ng-template>
