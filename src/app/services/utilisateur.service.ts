@@ -24,4 +24,8 @@ export class UtilisateurService{
       }
     })
   }
+
+  public deleteUtilisateur(id: number){
+    return this.http.delete(this.host + "/utilisateurs/" + id)
+  }
 }
