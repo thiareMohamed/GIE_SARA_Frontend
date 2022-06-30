@@ -34,6 +34,15 @@
     overflow: scroll;
     max-height: 800px;
     max-width: 100%;
+    tbody{
+      tr{
+        td{
+          i{
+            cursor: pointer;
+          }
+        }
+      }
+    }
   }
 }
 ng-template{

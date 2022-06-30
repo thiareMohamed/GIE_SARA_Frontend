@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
-import {UtilisateurService} from "../services/utilisateur.service";
+import {UtilisateurService} from "../../services/utilisateur.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -51,10 +51,18 @@ export class UtilisateurComponent implements OnInit {
 
   showUtilisateur() {
     this.utilisateurService.addUtilisateur(this.userForm.value).subscribe((data)=>{
-      console.log(data)
       this.utilisateurList = data
       this.ngOnInit()
       this.userForm.reset()
     })
+  }
+
+  deleteUtilisateur(id: number) {
+   if (confirm("Voulez-vous vraiment supprimer l'utilisateur")){
+     this.utilisateurService.deleteUtilisateur(id).subscribe((data)=>{
+       this.utilisateurList = data
+       this.ngOnInit()
+     })
+   }
   }
 }
