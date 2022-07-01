@@ -2,6 +2,8 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IUtilisateur} from "../../model/IUtilisateur";
+import {IRoleEmail} from "../../model/IRoleEmail";
+
 
 @Injectable({
   providedIn: "root"
@@ -27,5 +29,9 @@ export class UtilisateurService{
 
   public deleteUtilisateur(id: number){
     return this.http.delete(this.host + "/utilisateurs/" + id)
+  }
+
+  public removeRole(roleEmail: IRoleEmail) {
+    return this.http.put(this.host + "/removeRole", roleEmail)
   }
 }

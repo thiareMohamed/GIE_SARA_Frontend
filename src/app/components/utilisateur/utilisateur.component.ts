@@ -20,18 +20,25 @@ export class UtilisateurComponent implements OnInit {
     nom: new FormControl("", Validators.required),
     date_naissance: new FormControl("", Validators.required),
     lieu_naissance: new FormControl("", Validators.required),
-    sexe: new FormControl("", Validators.required),
+    sexe: new FormControl("", [Validators.required,
+      Validators.pattern("^[H|F]{1}")]),
     numero_telephone: new FormControl("",
       [Validators.pattern('^(77|78|76|70|75)[0-9]{7}$'),
-                                                Validators.required]),
-
+        Validators.required]),
     numero_cni: new FormControl("",
-                                      [Validators.required,
-                                        Validators.pattern('^(77)[0-9]{13}$')]),
-
+      [Validators.required,
+        Validators.pattern('^(1|2)[0-9]{13}$')]),
     email: new FormControl("", [Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl("", Validators.required)
+  })
+
+
+
+  removeRoleForm = new FormGroup({
+    email: new FormControl("", [Validators.required,
+      Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
+    libelle: new FormControl("", Validators.required)
   })
 
 
@@ -43,6 +50,7 @@ export class UtilisateurComponent implements OnInit {
 
   ngOnInit(): void {
     this.utilisateurList = this.utilisateurService.getUtilisateurs()
+    console.log( this.utilisateurService.getUtilisateurs())
   }
 
   open(content: any) {
@@ -64,5 +72,12 @@ export class UtilisateurComponent implements OnInit {
        this.ngOnInit()
      })
    }
+  }
+
+  removeRole(){
+    this.utilisateurService.removeRole(this.removeRoleForm.value).subscribe(()=>{
+      this.removeRoleForm.reset()
+      this.ngOnInit()
+    })
   }
 }

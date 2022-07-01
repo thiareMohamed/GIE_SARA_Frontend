@@ -12,7 +12,8 @@
     <div class="d-block d-md-flex p-3 justify-content-between">
       <h4 class="text">Liste des utilisateurs</h4>
       <div class="d-block d-md-flex">
-        <button type="button"  class="btn btns mx-5 text-light"  (click)="open(content)">Ajouter utilisateur</button>
+        <button type="button"  class="btn btns text-light"  (click)="open(content1)">Enlever role</button>
+        <button type="button"  class="btn btns mx-3 text-light"  (click)="open(content)">Ajouter utilisateur</button>
       </div>
     </div>
     <div class="p-5 tablel">
@@ -85,9 +86,38 @@
               (click)="c('Save click')"
               (click)="showUtilisateur()">
         Ajouter
-
       </button>
     </div>
   </div>
 </ng-template>
 
+
+<!--POPUP Remove role to Utilisateur-->
+<ng-template #content1 let-c="close" let-d="dismiss">
+  <div class="ajout-utilisateur">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic">Enlever un role a un utilisateur</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="removeRoleForm">
+        <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
+        <select class="form-control mb-3" formControlName="libelle">
+          <option hidden disabled selected>Roles</option>
+          <option value="ADMIN">ADMIN</option>
+          <option value="RELEVEUR">RELEVEUR</option>
+          <option value="CAISSIER">CAISSIER</option>
+        </select>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button"
+              class="btn btns m-auto w-100 text-light"
+              [disabled]="removeRoleForm.invalid"
+              (click)="c('Save click')"
+              (click)="removeRole()">
+        Enlever role
+      </button>
+    </div>
+  </div>
+</ng-template>
