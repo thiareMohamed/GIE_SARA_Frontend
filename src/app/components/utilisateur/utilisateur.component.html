@@ -10,13 +10,13 @@
   </div>
   <div class="contenu">
     <div class="d-block d-md-flex p-3 justify-content-between">
+
       <h4 class="text">Liste des utilisateurs</h4>
       <div class="d-block d-md-flex">
-        <button type="button"  class="btn btns text-light"  (click)="open(content1)">Enlever role</button>
-        <button type="button"  class="btn btns mx-3 text-light"  (click)="open(content)">Ajouter utilisateur</button>
+        <button type="button"  class="btn btns mx-3 text-light p-2"  (click)="open(content)">Ajouter utilisateur</button>
       </div>
     </div>
-    <div class="p-5 tablel">
+    <div class="p-1 tablel">
       <table class="table table-striped p-3">
         <thead>
         <tr>
@@ -43,7 +43,7 @@
           <td>{{utilisateur.email}}</td>
           <td>{{utilisateur.numero_telephone}}</td>
           <td>
-            <i class="bi bi-pencil-square text-success"></i>
+            <i class="bi bi-pencil-square text-success" (click)="detailUtilisateur(utilisateur.id, contentEdit)"></i>
             <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteUtilisateur(utilisateur.id)"></i>
           </td>
         </tr>
@@ -68,10 +68,16 @@
         <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
         <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
         <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <label>Sexe</label>
         <select class="form-control mb-3" formControlName="sexe">
-          <option hidden disabled selected>Sexe</option>
           <option value="M">Masculin</option>
           <option value="F">Féminin</option>
+        </select>
+        <label>Role</label>
+        <select class="form-control mb-3 text-black" formControlName="libelle">
+          <option value="ADMIN">ADMIN</option>
+          <option value="RELEVEUR">RELEVEUR</option>
+          <option value="CAISSIER">CAISSIER</option>
         </select>
         <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
         <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
@@ -92,32 +98,90 @@
 </ng-template>
 
 
-<!--POPUP Remove role to Utilisateur-->
-<ng-template #content1 let-c="close" let-d="dismiss">
-  <div class="ajout-utilisateur">
+
+<!--POPUP Modification Utilisateur-->
+<ng-template #contentEdit let-c="close" let-d="dismiss">
+  <div class="ajout-utilisateur" >
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic">Enlever un role a un utilisateur</h4>
+      <h4 class="modal-title" id="modal-basic">Modifier utilisateur</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
-    <div class="modal-body">
-      <form [formGroup]="removeRoleForm">
-        <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
-        <select class="form-control mb-3" formControlName="libelle">
-          <option hidden disabled selected>Roles</option>
+    <div class="modal-body" >
+      <form [formGroup]="userFormEdit">
+
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom" >
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <label>Sexe</label>
+        <select class="form-control mb-3" formControlName="sexe">
+          <option value="M">Masculin</option>
+          <option value="F">Féminin</option>
+        </select>
+        <label>Role</label>
+        <select class="form-control mb-3 text-black" formControlName="libelle">
           <option value="ADMIN">ADMIN</option>
           <option value="RELEVEUR">RELEVEUR</option>
           <option value="CAISSIER">CAISSIER</option>
         </select>
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+        <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
+        <input type="password" class="form-control mb-3" placeholder="Mot de passe" formControlName="password">
       </form>
     </div>
     <div class="modal-footer">
       <button type="button"
               class="btn btns m-auto w-100 text-light"
-              [disabled]="removeRoleForm.invalid"
+              [disabled]="userForm.invalid"
               (click)="c('Save click')"
-              (click)="removeRole()">
-        Enlever role
+              (click)="showUtilisateur()">
+        Ajouter
       </button>
     </div>
   </div>
 </ng-template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--&lt;!&ndash;POPUP Remove role to Utilisateur&ndash;&gt;-->
+<!--<ng-template #content1 let-c="close" let-d="dismiss">-->
+<!--  <div class="ajout-utilisateur">-->
+<!--    <div class="modal-header">-->
+<!--      <h4 class="modal-title" id="modal-basic">Enlever un role a un utilisateur</h4>-->
+<!--      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>-->
+<!--    </div>-->
+<!--    <div class="modal-body">-->
+<!--      <form [formGroup]="removeRoleForm">-->
+<!--        <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">-->
+<!--        <select class="form-control mb-3" formControlName="libelle">-->
+<!--          <option hidden disabled selected>Roles</option>-->
+<!--          <option value="ADMIN">ADMIN</option>-->
+<!--          <option value="RELEVEUR">RELEVEUR</option>-->
+<!--          <option value="CAISSIER">CAISSIER</option>-->
+<!--        </select>-->
+<!--      </form>-->
+<!--    </div>-->
+<!--    <div class="modal-footer">-->
+<!--      <button type="button"-->
+<!--              class="btn btns m-auto w-100 text-light"-->
+<!--              [disabled]="removeRoleForm.invalid"-->
+<!--              (click)="c('Save click')"-->
+<!--              (click)="removeRole()">-->
+<!--        Enlever role-->
+<!--      </button>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-template>-->

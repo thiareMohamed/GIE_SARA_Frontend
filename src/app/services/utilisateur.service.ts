@@ -3,6 +3,7 @@ import {environment} from "../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IUtilisateur} from "../../model/IUtilisateur";
 import {IRoleEmail} from "../../model/IRoleEmail";
+import {FormControl, ɵValue} from "@angular/forms";
 
 
 @Injectable({
@@ -18,8 +19,12 @@ export class UtilisateurService{
     return this.http.get(this.host + "/utilisateurs")
   }
 
-  public addUtilisateur(utilisateur: IUtilisateur){
-    return this.http.post<any>(this.host + "/utilisateurs", utilisateur, {
+  public showUtilisateur(id: number){
+    return this.http.get(this.host + "/utilisateur/" + id)
+  }
+
+  public addUtilisateur(utilisateur: IUtilisateur, libelle: ɵValue<FormControl<string | null>> | undefined) {
+    return this.http.post<any>(this.host + "/utilisateurs/" + libelle, utilisateur, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -31,7 +36,11 @@ export class UtilisateurService{
     return this.http.delete(this.host + "/utilisateurs/" + id)
   }
 
-  public removeRole(roleEmail: IRoleEmail) {
-    return this.http.put(this.host + "/removeRole", roleEmail)
+  public EditUtilisateur(utilisateur: IUtilisateur){
+    return this.http.put(this.host + "/utilisateurs/" + utilisateur.id, utilisateur)
   }
+
+  // public removeRole(roleEmail: IRoleEmail) {
+  //   return this.http.put(this.host + "/removeRole", roleEmail)
+  // }
 }
