@@ -131,13 +131,10 @@
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button"
-              class="btn btns m-auto w-100 text-light"
-              [disabled]="userForm.invalid"
-              (click)="c('Save click')"
-              (click)="showUtilisateur()">
-        Ajouter
-      </button>
+      <input type="sumit" class="btn btns m-auto w-100 text-light" value="Modifier"
+             (click)="c('Save click')"
+             (click)="utilisateurEditCollection()"
+             (click)="updateUtilisateur(userFormEdit.value.id)">
     </div>
   </div>
 </ng-template>

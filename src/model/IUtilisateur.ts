@@ -9,4 +9,5 @@ export interface IUtilisateur{
   numero_cni?: string | null | undefined;
   email?: string | null | undefined;
   password?: string | null | undefined;
+  role?: any[];
 }

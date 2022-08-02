@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
-import {environment} from "../../environments/environment";
+import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
-import {IUtilisateur} from "../../model/IUtilisateur";
-import {IRoleEmail} from "../../model/IRoleEmail";
+import {IUtilisateur} from "../../../model/IUtilisateur";
+import {IRoleEmail} from "../../../model/IRoleEmail";
 import {FormControl, ɵValue} from "@angular/forms";
 
 
@@ -36,8 +36,13 @@ export class UtilisateurService{
     return this.http.delete(this.host + "/utilisateurs/" + id)
   }
 
-  public EditUtilisateur(utilisateur: IUtilisateur){
-    return this.http.put(this.host + "/utilisateurs/" + utilisateur.id, utilisateur)
+  public EditUtilisateur(utilisateur: IUtilisateur, id: number){
+    return this.http.patch(this.host + "/utilisateurs/update/" + id, utilisateur, {
+        headers: {
+          'Authorization': 'application/json',
+          'Content-Type': 'application/json',
+        }
+      })
   }
 
   // public removeRole(roleEmail: IRoleEmail) {
