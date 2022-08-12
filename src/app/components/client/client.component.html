@@ -20,7 +20,7 @@
 
      </div>
    </div>
-    <div class="p-5 tablel">
+    <div class="p-5 tablel" *ngIf="clients">
       <table class="table table-striped p-3">
         <thead>
         <tr>
@@ -28,306 +28,26 @@
           <th>Prenom</th>
           <th>Nom</th>
           <th>Sexe</th>
-          <th>Adresse</th>
+          <th>Lieu de naissance</th>
+          <th>date de naissance</th>
           <th>Téléphone</th>
           <th>Action</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
+        <tr *ngFor="let client of clients | async">
+          <td>{{client.id}}</td>
+          <td>{{client.prenom}}</td>
+          <td>{{client.nom}}</td>
+          <td>{{client.sexe}}</td>
+          <td>{{client.lieu_naissance}}</td>
+          <td>{{client.date_naissance | date: "short"}}</td>
+          <td>{{client.numero_telephone}}</td>
           <td class="d-flex">
             <i class="bi bi-pencil-square text-success"></i>
             <i class="bi bi-trash3-fill text-danger mx-3"></i>
           </td>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-        <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>  <tr>
-          <td>1</td>
-          <td>Mohamed</td>
-          <td>THIARE</td>
-          <td>M</td>
-          <td>Point E</td>
-          <td>77 786 86 67</td>
-          <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
-          </td>
-        </tr>
-
-
         </tbody>
       </table>
     </div>
@@ -336,23 +56,35 @@
 
 <!--POPUP AJOUT Client-->
 <ng-template #content let-c="close" let-d="dismiss">
-  <div class="ajout-client">
+  <div class="ajout-utilisateur">
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Ajouter client</h4>
+      <h4 class="modal-title" id="modal-basic-title">Ajouter utilisateur</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
     </div>
     <div class="modal-body">
-      <input type="text" class="form-control mb-3" placeholder="Prenom">
-      <input type="text" class="form-control mb-3" placeholder="Nom">
-      <select class="form-control mb-3">
-        <option value="M">Masculin</option>
-        <option value="F">Feminin</option>
-      </select>
-      <input type="text" class="form-control mb-3" placeholder="Adresse">
-      <input type="number" class="form-control mb-3" placeholder="Telephone">
+      <form [formGroup]="clientForm">
+
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <label>Sexe</label>
+        <select class="form-control mb-3" formControlName="sexe">
+          <option value="M">Masculin</option>
+          <option value="F">Féminin</option>
+        </select>
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+      </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btns m-auto w-100 text-light" (click)="c('Save click')">Ajouter</button>
+      <button type="button"
+              class="btn btns m-auto w-100 text-light"
+              [disabled]="clientForm.invalid"
+              (click)="c('Save click')"
+              (click)="save()">
+        Ajouter
+      </button>
     </div>
   </div>
 </ng-template>
