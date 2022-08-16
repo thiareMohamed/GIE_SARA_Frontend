@@ -12,7 +12,8 @@ import { CompteurComponent } from './components/compteur/compteur.component';
 import {RouterModule, Routes} from "@angular/router";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ConfigComponent } from './components/config/config.component';
 
 
 @NgModule({
@@ -24,11 +25,13 @@ import {ReactiveFormsModule} from "@angular/forms";
     ClientComponent,
     UtilisateurComponent,
     FacturationComponent,
-    CompteurComponent
+    CompteurComponent,
+    ConfigComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
       {path: "", component: HomeComponent},
       {path: "accueil", component: HomeComponent},
@@ -37,7 +40,8 @@ import {ReactiveFormsModule} from "@angular/forms";
       {path: "utilisateur", component: UtilisateurComponent},
       {path: "facture", component: FacturationComponent},
       {path: "compteur", component: CompteurComponent},
-      {path: "login", component: LoginComponent}
+      {path: "login", component: LoginComponent},
+      {path: "config", component: ConfigComponent}
 
     ]),
     NgbModule,

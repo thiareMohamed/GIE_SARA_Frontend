@@ -35,8 +35,8 @@ export class ClientService{
     return this.http.delete(this.host + this.url + id)
   }
 
-  public EditUtilisateur(client: IClient, id: number){
-    return this.http.patch(this.host + `${this.url}` + "update/"+ id, client, {
+  public editClient(client: IClient, id: number){
+    return this.http.put(this.host + this.url + id, client, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -44,4 +44,7 @@ export class ClientService{
     })
   }
 
+  public getClientsByNom(nom: any){
+    return this.http.get(this.host + this.url + "search/" + nom)
+  }
 }

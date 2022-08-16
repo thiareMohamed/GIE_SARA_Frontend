@@ -13,14 +13,17 @@
      <h4 class="text">Liste des clients</h4>
      <div class="d-block d-md-flex">
        <form action="" class="d-flex">
-         <input type="text" class="form-control  mx-2" placeholder="Nom de famille">
-         <input type="submit" class="btn btns text-light" value="Rechercher">
+         <input type="text" class="form-control  mx-2" placeholder="Nom de famille" [(ngModel)]="nom" name="nom">
+         <input type="submit" class="btn btns text-light" value="Rechercher" (click)="getClientsByNom(nom)">
+         <div [hidden]="bool">
+           <i class=" btn btns mx-2 text-light bi bi-backspace-fill" (click)="loadInit()"></i>
+         </div>
        </form>
        <button type="button"  class="btn btns mx-5 text-light"  (click)="open(content)">Ajouter client</button>
 
      </div>
    </div>
-    <div class="p-5 tablel" *ngIf="clients">
+    <div class="p-5 tablel" *ngIf="clients; else notFound">
       <table class="table table-striped p-3">
         <thead>
         <tr>
@@ -44,14 +47,17 @@
           <td>{{client.date_naissance | date: "short"}}</td>
           <td>{{client.numero_telephone}}</td>
           <td class="d-flex">
-            <i class="bi bi-pencil-square text-success"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3"></i>
+            <i class="bi bi-pencil-square text-success" (click)="detailClient(client.id, contentEdit)"></i>
+            <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteClient(client.id)"></i>
           </td>
         </tr>
         </tbody>
       </table>
     </div>
   </div>
+  <ng-template #notFound>
+    <p>Aucun resultat trouvé</p>
+  </ng-template>
 </div>
 
 <!--POPUP AJOUT Client-->
@@ -83,6 +89,42 @@
               [disabled]="clientForm.invalid"
               (click)="c('Save click')"
               (click)="save()">
+        Ajouter
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
+<!--POPUP AJOUT Client-->
+<ng-template #contentEdit let-c="close" let-d="dismiss">
+  <div class="ajout-utilisateur">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-update">Modifier client</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="clientFormEdit">
+
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <label>Sexe</label>
+        <select class="form-control mb-3" formControlName="sexe">
+          <option value="M">Masculin</option>
+          <option value="F">Féminin</option>
+        </select>
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button"
+              class="btn btns m-auto w-100 text-light"
+              [disabled]="clientFormEdit.invalid"
+              (click)="c('Save click')"
+                (click)="updateClient(clientFormEdit.value.id)">
         Ajouter
       </button>
     </div>
