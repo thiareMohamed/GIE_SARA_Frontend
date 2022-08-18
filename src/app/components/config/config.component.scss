@@ -1,0 +1,32 @@
+.main{
+  margin-top: 30px;
+  margin-left: 20px;
+  .client {
+    .titre {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 37px;
+      color: #FFFFFF;
+    }
+
+    .indice {
+      margin-top: -5px;
+      background-color: #FFFFFF;
+      padding: 5px 12px 2px 12px;
+      border-radius: 50%;
+      font-weight: bold;
+      font-size: medium;
+    }
+
+    .mail-title {
+      color: #FFFFFF;
+    }
+  }
+  .contenu{
+    background: linear-gradient(115.19deg, rgba(255, 255, 255, 0.4399) 6.24%, rgba(255, 255, 255, 0.3869) 16.42%, rgba(255, 255, 255, 0.3392) 32.58%, rgba(255, 255, 255, 0.2279) 53.06%, rgba(255, 255, 255, 0.2014) 72.51%, rgba(255, 255, 255, 0.1643) 91.44%);
+    border: 1px solid rgba(255, 255, 255, 0.46);
+    border-radius: 10px;
+  }
+}
+

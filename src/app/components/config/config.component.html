@@ -1,0 +1,255 @@
+<div class="main container-fluid">
+  <div class="d-flex justify-content-md-between justify-content-center align-items-center client">
+    <h3 class="titre">Paramètre</h3>
+    <div class="d-none d-md-block">
+      <div class="user-email d-flex align-items-center">
+        <span class="indice mx-2">T</span>
+        <h6 class="mail-title">thiaremohamed.mt@gmail.com</h6>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenu">
+    <div class="p-4 d-lg-flex justify-content-around">
+      <div class="card bg-light text-primary text-center p-5 card-congif btn" (click)="modal(1)">
+        <blockquote class="blockquote mb-0">
+          <p>Gestion des forages</p>
+        </blockquote>
+      </div>
+
+
+      <div class="card bg-light text-primary text-center p-5 card-congif btn" (click)="modal(2)">
+        <blockquote class="blockquote mb-0">
+          <p>Gestion des village</p>
+        </blockquote>
+      </div>
+
+      <div class="card bg-light text-primary text-center p-5 card-congif"(click)="modal(3)">
+        <blockquote class="blockquote mb-0">
+          <p>Gestion des abonnements</p>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="m-3 p-4">
+      <div [hidden]="modal1">
+        <div class="d-flex justify-content-md-between justify-content-center align-items-center client">
+          <h3 class="titre text-light">Gestion des forages</h3>
+          <button type="button"  class="btn btns mx-5 text-light"  (click)="open(contentAddForage)">Ajouter forage</button>
+        </div>
+        <div class="p-5 tablel">
+          <table class="table table-striped p-3">
+            <thead>
+            <tr>
+              <th>Identifiant</th>
+              <th>Nom</th>
+              <th>Capacite</th>
+              <th>Profondeur</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let forage of forages">
+              <td>{{forage.id}}</td>
+              <td>{{forage.nom_site}}</td>
+              <td>{{forage.capacite}}</td>
+              <td>{{forage.profondeur_forage}}</td>
+              <td class="d-flex">
+                <i class="bi bi-pencil-square text-success btn" (click)="detailForage(forage.id, contenteditforage)"></i>
+                <i class="bi bi-trash3-fill text-danger mx-3 btn" (click)="deleteForage(forage.id)"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div [hidden]="modal2">
+        <div class="d-flex justify-content-md-between justify-content-center align-items-center client">
+          <h3 class="titre text-light">Gestion des villages</h3>
+          <button type="button"  class="btn btns mx-5 text-light"  (click)="open(content)">Ajouter villages</button>
+        </div>
+        <div class="p-5 tablel">
+          <table class="table table-striped p-3" *ngIf="villages">
+            <thead>
+            <tr>
+              <th>Identifiant</th>
+              <th>Nom</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let village of villages">
+              <td>{{village.id}}</td>
+              <td>{{village.nom}}</td>
+              <td class="d-flex">
+                <i class="bi bi-pencil-square text-success btn" (click)="detailVillage(village.id, contenteditvillage)"></i>
+                <i class="bi bi-trash3-fill text-danger mx-3 btn" (click)="deleteVillage(village.id)"></i>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <div [hidden]="modal3">
+        <div class="d-flex justify-content-md-between justify-content-center align-items-center client">
+          <h3 class="titre text-light">Gestion des abonnements</h3>
+          <button type="button"  class="btn btns mx-5 text-light"  (click)="open(content)">Ajouter abonnements</button>
+        </div>
+        <div class="p-5 tablel">
+          <table class="table table-striped p-3">
+            <thead>
+            <tr>
+              <th>Identifiant</th>
+              <th>Prenom</th>
+              <th>Nom</th>
+              <th>Sexe</th>
+              <th>Lieu de naissance</th>
+              <th>date de naissance</th>
+              <th>Téléphone</th>
+              <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *>
+              <!--            <td>{{client.id}}</td>-->
+              <!--            <td>{{client.prenom}}</td>-->
+              <!--            <td>{{client.nom}}</td>-->
+              <!--            <td>{{client.sexe}}</td>-->
+              <!--            <td>{{client.lieu_naissance}}</td>-->
+              <!--            <td>{{client.date_naissance | date: "short"}}</td>-->
+              <!--            <td>{{client.numero_telephone}}</td>-->
+              <td class="d-flex">
+                <!--              <i class="bi bi-pencil-square text-success" (click)="detailClient(client.id, contentEdit)"></i>-->
+                <!--              <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteClient(client.id)"></i>-->
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+<!--POPUP AJOUT village-->
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Ajouter Village</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="villageForm">
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <div class="modal-footer">
+          <button type="button"
+                  [disabled]="villageForm.invalid"
+                  (click)="ajouterVillage()"
+                  (click)="c('Save click')"
+          class="btn btns m-auto w-100 text-light">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<!--POPUP EDIT village-->
+<ng-template #contenteditvillage let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-edit-village">Modifier Village</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="villageFormEdit">
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
+        <div class="modal-footer">
+          <button type="button"
+                  (click)="editVillage(villageFormEdit.value.id)"
+                  (click)="c('Save click')"
+                  class="btn btns m-auto w-100 text-light">
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+
+<!--POPUP AJOUT forage-->
+<ng-template #contentAddForage let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-forage">Ajouter Forage</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="forageForm">
+        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nom_site">
+        <input type="number" class="form-control mb-3" placeholder="Longitude" formControlName="longitude">
+        <input type="number" class="form-control mb-3" placeholder="Latitude" formControlName="latitude">
+        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="date_installation">
+        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeur_forage">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur" formControlName="hauteur">
+        <input type="number" class="form-control mb-3" placeholder="Capacite" formControlName="capacite">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteur_sous_radier">
+        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="type_paratonerre">
+        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="type_reservoir">
+        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capacite_reservoir">
+        <div class="modal-footer">
+          <button type="button"
+                  [disabled]="forageForm.invalid"
+                  (click)="ajouterForage()"
+                  (click)="c('Save click')"
+                  class="btn btns m-auto w-100 text-light">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<!--POPUP EDIT Forage-->
+<ng-template #contenteditforage let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-edit-forage">Modifier forage</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="forageFormEdit">
+        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nom_site">
+        <input type="number" class="form-control mb-3" placeholder="Longitude" formControlName="longitude">
+        <input type="number" class="form-control mb-3" placeholder="Latitude" formControlName="latitude">
+        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="date_installation">
+        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeur_forage">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur" formControlName="hauteur">
+        <input type="number" class="form-control mb-3" placeholder="Capacite" formControlName="capacite">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteur_sous_radier">
+        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="type_paratonerre">
+        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="type_reservoir">
+        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capacite_reservoir">
+        <div class="modal-footer">
+          <button type="button"
+                  (click)="editForage(forageFormEdit.value.id)"
+                  (click)="c('Save click')"
+                  class="btn btns m-auto w-100 text-light">
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
