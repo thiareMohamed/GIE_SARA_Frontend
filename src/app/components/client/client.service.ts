@@ -2,6 +2,7 @@ import {Injectable} from "@angular/core";
 import {environment} from "../../../environments/environment";
 import {HttpClient} from "@angular/common/http";
 import {IClient} from "../../../model/IClient";
+import {Observable} from "rxjs";
 
 
 @Injectable({
@@ -14,15 +15,15 @@ export class ClientService{
   constructor(private http: HttpClient) {
   }
 
-  public getClients(){
+  public getClients(): Observable<IClient>{
     return this.http.get(this.host + this.url)
   }
 
-  public showClient(id: number){
+  public showClient(id: number): Observable<IClient>{
     return this.http.get(this.host + this.url + id)
   }
 
-  public addClient(client: IClient) {
+  public addClient(client: IClient): Observable<IClient> {
     return this.http.post<any>(this.host + this.url, client, {
       headers: {
         'Authorization': 'application/json',
@@ -35,7 +36,7 @@ export class ClientService{
     return this.http.delete(this.host + this.url + id)
   }
 
-  public editClient(client: IClient, id: number){
+  public editClient(client: IClient, id: number): Observable<IClient>{
     return this.http.put(this.host + this.url + id, client, {
       headers: {
         'Authorization': 'application/json',
@@ -44,7 +45,7 @@ export class ClientService{
     })
   }
 
-  public getClientsByNom(nom: any){
+  public getClientsByNom(nom: any): Observable<IClient>{
     return this.http.get(this.host + this.url + "search/" + nom)
   }
 }

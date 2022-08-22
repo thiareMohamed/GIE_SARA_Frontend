@@ -34,6 +34,7 @@
           <th>Lieu de naissance</th>
           <th>date de naissance</th>
           <th>Téléphone</th>
+          <th>Ajout compteur</th>
           <th>Action</th>
         </tr>
         </thead>
@@ -46,9 +47,12 @@
           <td>{{client.lieu_naissance}}</td>
           <td>{{client.date_naissance | date: "short"}}</td>
           <td>{{client.numero_telephone}}</td>
+          <td>
+            <i class="btn bi bi-plus-square-fill text-success" (click)="ajoutCompteurPopup(client.id, contentAjoutCompteur)"></i>
+          </td>
           <td class="d-flex">
-            <i class="bi bi-pencil-square text-success" (click)="detailClient(client.id, contentEdit)"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteClient(client.id)"></i>
+            <i class="btn bi bi-pencil-square text-success" (click)="detailClient(client.id, contentEdit)"></i>
+            <i class="btn bi bi-trash3-fill text-danger mx-3" (click)="deleteClient(client.id)"></i>
           </td>
         </tr>
         </tbody>
@@ -125,6 +129,56 @@
               [disabled]="clientFormEdit.invalid"
               (click)="c('Save click')"
                 (click)="updateClient(clientFormEdit.value.id)">
+        Ajouter
+      </button>
+    </div>
+  </div>
+</ng-template>
+
+
+<!--Ajout Compteur-->
+<ng-template #contentAjoutCompteur let-c="close" let-d="dismiss">
+  <div class="ajout-compteur" *ngIf="villages && forages && abonnements">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-ajout-compteur">Ajouter Compteur</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="compteurForm">
+
+        <input type="text" class="form-control mb-3" placeholder="Type compteur" formControlName="type_compteur">
+        <input type="text" class="form-control mb-3" placeholder="Marque compteur" formControlName="marque_compteur">
+        <input type="date" class="form-control mb-3" placeholder="Date d'abonnement" formControlName="date_abonnement">
+
+        <label>Forage</label>
+        <select class="form-control mb-3" formControlName="idForage">
+          <option  *ngFor="let forage of forages | async" value="{{forage.id}}">
+            {{forage.nom_site}}
+          </option>
+        </select>
+
+        <label>Village</label>
+        <select class="form-control mb-3" formControlName="idVillage">
+          <option  *ngFor="let village of villages | async" value="{{village.id}}">
+            {{village.nom}}
+          </option>
+        </select>
+
+        <label>Abonnement</label>
+        <select class="form-control mb-3" formControlName="idAbonnement">
+          <option  *ngFor="let abonnement of abonnements | async" value="{{abonnement.id}}">
+            {{abonnement.libelle}}
+          </option>
+        </select>
+
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button"
+              class="btn btns m-auto w-100 text-light"
+              [disabled]="compteurForm.invalid"
+              (click)="c('Save click')"
+              (click)="ajoutCompteur()">
         Ajouter
       </button>
     </div>

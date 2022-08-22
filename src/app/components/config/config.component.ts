@@ -90,7 +90,6 @@ export class ConfigComponent implements OnInit {
     this.village.commune = {
       id:1,
       nom: "Keur Samba Gueye",
-      village: null
     }
     this.configService.createVillage(this.village).subscribe((res)=>{
       this.ngOnInit()

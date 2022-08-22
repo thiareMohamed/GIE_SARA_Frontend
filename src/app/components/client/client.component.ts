@@ -4,6 +4,11 @@ import {ClientService} from "./client.service";
 import {IClient} from "../../../model/IClient";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {DatePipe} from "@angular/common";
+import {ICompteur} from "../../../model/ICompteur";
+import {ConfigService} from "../config/config.service";
+import {CompteurService} from "../compteur/compteur.service";
+import {IForage} from "../../../model/IForage";
+import {IAddCompteurDto} from "../../../model/IAddCompteurDto";
 
 @Component({
   selector: 'app-client',
@@ -12,6 +17,10 @@ import {DatePipe} from "@angular/common";
   providers: [NgbModalConfig, NgbModal,DatePipe]
 })
 export class ClientComponent implements OnInit {
+
+  forages: any = []
+  villages: any = []
+  abonnements: any = []
 
   titre: String = "Client";
   mailTitre: String = "thiaremohamed.mt@gmail.com";
@@ -22,6 +31,7 @@ export class ClientComponent implements OnInit {
   clientFormEdit: any
   nom: string = ""
   bool = true
+
 
   clientForm = new FormGroup({
     prenom: new FormControl(null, Validators.required),
@@ -38,9 +48,23 @@ export class ClientComponent implements OnInit {
   })
 
 
+  compteurDto: IAddCompteurDto = Object.create(null);
+  compteurForm = new FormGroup({
+    type_compteur: new FormControl(null, Validators.required),
+    date_abonnement: new FormControl(null, Validators.required),
+    marque_compteur: new FormControl("", Validators.required),
+
+    idForage: new FormControl("", Validators.required),
+    idVillage: new FormControl("", Validators.required),
+    idAbonnement: new FormControl("", Validators.required),
+  })
+
+
   constructor(config: NgbModalConfig,
               private modalService: NgbModal,
               public datepipe: DatePipe,
+              private configService: ConfigService,
+              private compteurService: CompteurService,
               private clientService: ClientService) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
@@ -57,6 +81,9 @@ export class ClientComponent implements OnInit {
 
   loadAll(){
     this.clients = this.clientService.getClients()
+    this.abonnements = this.configService.getAbonnements()
+    this.forages = this.configService.getForages()
+    this.villages = this.configService.getVillages()
   }
 
   save(){
@@ -108,5 +135,22 @@ export class ClientComponent implements OnInit {
     this.bool = true
   }
 
+  ajoutCompteur() {
+    this.compteurDto.type_compteur = this.compteurForm.value.type_compteur
+    this.compteurDto.date_abonnement = this.compteurForm.value.date_abonnement
+    this.compteurDto.marque_compteur = this.compteurForm.value.marque_compteur
+    this.compteurDto.statut = true
+    this.compteurDto.idForage = parseInt(<string>this.compteurForm.value.idForage)
+    this.compteurDto.idVillage = parseInt(<string>this.compteurForm.value.idVillage)
+    this.compteurDto.idAbonnement = parseInt(<string>this.compteurForm.value.idAbonnement)
+
+    console.log("==================")
+    console.log(this.compteurForm.value)
+  }
+
+  ajoutCompteurPopup(id: number, content: any) {
+    this.modalService.open(content)
+    this.compteurDto.idClient = id
+  }
 }
 

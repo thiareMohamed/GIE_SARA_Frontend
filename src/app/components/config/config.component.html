@@ -97,34 +97,26 @@
       <div [hidden]="modal3">
         <div class="d-flex justify-content-md-between justify-content-center align-items-center client">
           <h3 class="titre text-light">Gestion des abonnements</h3>
-          <button type="button"  class="btn btns mx-5 text-light"  (click)="open(content)">Ajouter abonnements</button>
+          <button type="button"  class="btn btns mx-5 text-light"  (click)="open(contentAddAbonnement)">Ajouter abonnements</button>
         </div>
         <div class="p-5 tablel">
           <table class="table table-striped p-3">
             <thead>
             <tr>
               <th>Identifiant</th>
-              <th>Prenom</th>
-              <th>Nom</th>
-              <th>Sexe</th>
-              <th>Lieu de naissance</th>
-              <th>date de naissance</th>
-              <th>Téléphone</th>
+              <th>Libelle</th>
+              <th>prix_unitaire</th>
               <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr *>
-              <!--            <td>{{client.id}}</td>-->
-              <!--            <td>{{client.prenom}}</td>-->
-              <!--            <td>{{client.nom}}</td>-->
-              <!--            <td>{{client.sexe}}</td>-->
-              <!--            <td>{{client.lieu_naissance}}</td>-->
-              <!--            <td>{{client.date_naissance | date: "short"}}</td>-->
-              <!--            <td>{{client.numero_telephone}}</td>-->
+            <tr *ngFor="let abonnement of abonnements">
+              <td>{{abonnement.id}}</td>
+              <td>{{abonnement.libelle}}</td>
+              <td>{{abonnement.prix_unitaire}} F cfa</td>
               <td class="d-flex">
-                <!--              <i class="bi bi-pencil-square text-success" (click)="detailClient(client.id, contentEdit)"></i>-->
-                <!--              <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteClient(client.id)"></i>-->
+                <i class="bi bi-pencil-square text-success" (click)="detailAbonnement(abonnement.id, contenteditabonnement)"></i>
+                <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteAbonnement(abonnement.id)"></i>
               </td>
             </tr>
             </tbody>
@@ -244,6 +236,61 @@
         <div class="modal-footer">
           <button type="button"
                   (click)="editForage(forageFormEdit.value.id)"
+                  (click)="c('Save click')"
+                  class="btn btns m-auto w-100 text-light">
+            Modifier
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+
+<!--POPUP AJOUT Abonnement-->
+<ng-template #contentAddAbonnement let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-abonnement">Ajouter Abonnement</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="abonnementForm">
+        <input type="text" class="form-control mb-3" placeholder="Libelle" formControlName="libelle">
+        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prix_unitaire">
+
+        <div class="modal-footer">
+          <button type="button"
+                  [disabled]="abonnementForm.invalid"
+                  (click)="ajouterAbonnement()"
+                  (click)="c('Save click')"
+                  class="btn btns m-auto w-100 text-light">
+            Ajouter
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+<!--POPUP EDIT Forage-->
+<ng-template #contenteditabonnement let-c="close" let-d="dismiss">
+  <div class="ajout-forage">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title-edit-abonnement">Modifier abonnement</h4>
+      <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="abonnementFormEdit">
+        <input type="text" class="form-control mb-3" placeholder="Libelle" formControlName="libelle">
+        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prix_unitaire">
+
+        <div class="modal-footer">
+          <button type="button"
+                  (click)="editAbonnement(abonnementFormEdit.value.id)"
                   (click)="c('Save click')"
                   class="btn btns m-auto w-100 text-light">
             Modifier

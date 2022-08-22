@@ -4,6 +4,8 @@ import {HttpClient} from "@angular/common/http";
 import {IVillage} from "../../../model/IVillage";
 import {IForage} from "../../../model/IForage";
 import {IAbonnement} from "../../../model/IAbonnement";
+import {Observable} from "rxjs";
+import {IClient} from "../../../model/IClient";
 
 @Injectable({
   providedIn: "root"
@@ -17,16 +19,16 @@ export class ConfigService {
   constructor(private http: HttpClient) {
   }
 
-  getVillages(){
-    return this.http.get(this.host + this.urlVillage)
+  getVillages(): Observable<IVillage[]>{
+    return this.http.get<IVillage[]>(this.host + this.urlVillage)
   }
 
-  findVillage(id: number){
+  findVillage(id: number): Observable<IVillage>{
     return this.http.get<IVillage>(this.host + this.urlVillage + id)
   }
 
-  createVillage(village: IVillage){
-    return this.http.post(this.host + this.urlVillage , village, {
+  createVillage(village: IVillage): Observable<IVillage>{
+    return this.http.post<IVillage>(this.host + this.urlVillage , village, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -34,8 +36,8 @@ export class ConfigService {
     })
   }
 
-  updateVillage(village: IVillage, id: number){
-    return this.http.put(this.host + this.urlVillage + id , village, {
+  updateVillage(village: IVillage, id: number): Observable<IVillage>{
+    return this.http.put<IVillage>(this.host + this.urlVillage + id , village, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -53,16 +55,16 @@ export class ConfigService {
 
   // Forage
 
-  getForages(){
-    return this.http.get(this.host + this.urlForage)
+  getForages(): Observable<IForage[]>{
+    return this.http.get<IForage[]>(this.host + this.urlForage)
   }
 
   findForage(id: number){
     return this.http.get<IForage>(this.host + this.urlForage + id)
   }
 
-  createForage(forage: IForage){
-    return this.http.post<any>(this.host + this.urlForage , forage, {
+  createForage(forage: IForage): Observable<IForage>{
+    return this.http.post<IForage>(this.host + this.urlForage , forage, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -70,8 +72,8 @@ export class ConfigService {
     })
   }
 
-  updateForage(forage: IForage, id: number){
-    return this.http.put(this.host + this.urlForage + id , forage, {
+  updateForage(forage: IForage, id: number): Observable<IForage>{
+    return this.http.put<IForage>(this.host + this.urlForage + id , forage, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -88,16 +90,16 @@ export class ConfigService {
 
   // Abonnement
 
-  getAbonnements(){
-    return this.http.get(this.host + this.urlAbonnement)
+  getAbonnements(): Observable<IAbonnement[]>{
+    return this.http.get<IAbonnement[]>(this.host + this.urlAbonnement)
   }
 
-  findAbonnement(id: number){
+  findAbonnement(id: number): Observable<IAbonnement>{
     return this.http.get<IAbonnement>(this.host + this.urlAbonnement + id)
   }
 
-  createAbonnement(abonnement: IAbonnement){
-    return this.http.post<any>(this.host + this.urlAbonnement , abonnement, {
+  createAbonnement(abonnement: IAbonnement): Observable<IAbonnement>{
+    return this.http.post<IAbonnement>(this.host + this.urlAbonnement , abonnement, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -105,8 +107,8 @@ export class ConfigService {
     })
   }
 
-  updateAbonnement(abonnement: IAbonnement, id: number){
-    return this.http.put(this.host + this.urlAbonnement + id , abonnement, {
+  updateAbonnement(abonnement: IAbonnement, id: number): Observable<IAbonnement>{
+    return this.http.put<IAbonnement>(this.host + this.urlAbonnement + id , abonnement, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
