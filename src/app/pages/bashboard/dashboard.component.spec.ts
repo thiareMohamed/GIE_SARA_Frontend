@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BashboardComponent } from './bashboard.component';
+import { BashboardComponent } from './dashboard.component';
 
 describe('BashboardComponent', () => {
   let component: BashboardComponent;
