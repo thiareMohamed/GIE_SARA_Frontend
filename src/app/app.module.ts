@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { BashboardComponent } from './pages/bashboard/bashboard.component';
+import { DashboardComponent } from './pages/bashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 import { ClientComponent } from './components/client/client.component';
 import { UtilisateurComponent } from './components/utilisateur/utilisateur.component';
@@ -14,13 +14,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConfigComponent } from './components/config/config.component';
+import {authInterceptorProviders} from "./guard/auth.intercenptor";
+import {AdminGuard} from "./guard/admin.guard";
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    BashboardComponent,
+    DashboardComponent,
     HomeComponent,
     ClientComponent,
     UtilisateurComponent,
@@ -33,21 +36,55 @@ import { ConfigComponent } from './components/config/config.component';
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      {path: "", component: HomeComponent},
-      {path: "accueil", component: HomeComponent},
-      {path: "accueil", component: HomeComponent},
-      {path: "client", component: ClientComponent},
-      {path: "utilisateur", component: UtilisateurComponent},
-      {path: "facture", component: FacturationComponent},
-      {path: "compteur", component: CompteurComponent},
-      {path: "login", component: LoginComponent},
-      {path: "config", component: ConfigComponent}
-
+      {
+        path: "accueil",
+        component: HomeComponent,
+        pathMatch: "full",
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "client",
+        component: ClientComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "utilisateur",
+        component: UtilisateurComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "facture",
+        component: FacturationComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "compteur",
+        component: CompteurComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "config",
+        component: ConfigComponent,
+        canActivate: [AdminGuard],
+      },
+      {
+        path: "login",
+        component: LoginComponent,
+      },
+      {
+        path: "",
+        redirectTo: "/login",
+        pathMatch: "full",
+      },
+      {
+        path: "**",
+        redirectTo: "/login"
+      }
     ]),
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

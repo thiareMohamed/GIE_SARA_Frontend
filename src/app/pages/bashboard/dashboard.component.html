@@ -1,11 +1,11 @@
 <!--<button class="btn btn-light" (click)="onClick()"> bouton</button>-->
 
 <div class="container-fluid row">
-  <section class="col-md-1 col-lg-2" id="section">
+  <section class="col-md-1 col-lg-2" id="section" [hidden]="sidebar">
     <div class="btn menu" [ngStyle]="{left: onMenuClick()}"  (click)="onMenuClick()">
       <i class="bi bi-list"></i>
     </div>
-    <div class="sidebar"  [ngStyle]="{left: '-' + onMenuClick()} ">
+    <div class="sidebar"  [ngStyle]="{left: '-' + onMenuClick()}">
       <nav>
         <div class="entete p-5">
           <img src="../../../assets/logo.svg" style="width: 90px" class="mx-4">
@@ -56,7 +56,7 @@
         </ul>
         <div class="deconnexion">
           <li class="">
-            <a href="#">
+            <a (click)="logOut()">
               <i class="bi bi-box-arrow-right"></i>
               <span class="text nav-text"> Déconnexion</span>
             </a>
@@ -65,7 +65,6 @@
       </nav>
     </div>
   </section>
-
   <main class="col blog">
     <router-outlet></router-outlet>
   </main>

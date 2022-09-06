@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Injectable} from '@angular/core';
 
+@Injectable()
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

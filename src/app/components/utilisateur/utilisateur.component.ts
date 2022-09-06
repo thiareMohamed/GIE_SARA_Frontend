@@ -22,18 +22,10 @@ export class UtilisateurComponent implements OnInit {
 
 
   userForm = new FormGroup({
-    prenom: new FormControl("", Validators.required),
-    nom: new FormControl("", Validators.required),
-    date_naissance: new FormControl("", Validators.required),
-    lieu_naissance: new FormControl("", Validators.required),
-    sexe: new FormControl("", Validators.required),
-    libelle: new FormControl("", Validators.required),
-    numero_telephone: new FormControl("",
-      [Validators.pattern('^(77|78|76|70|75)[0-9]{7}$'),
-        Validators.required]),
-    numero_cni: new FormControl("",
-      [Validators.required,
-        Validators.pattern('^(1|2)[0-9]{12}$')]),
+    firstName: new FormControl("", Validators.required),
+    lastName: new FormControl("", Validators.required),
+    login: new FormControl("", Validators.required),
+    role: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
     password: new FormControl("", Validators.required)
@@ -41,21 +33,13 @@ export class UtilisateurComponent implements OnInit {
 
 
   userFormEdit: any = new FormGroup({
-    prenom: new FormControl("null", Validators.required),
-    nom: new FormControl("null", Validators.required),
-    date_naissance: new FormControl("null", Validators.required),
-    lieu_naissance: new FormControl("null", Validators.required),
-    sexe: new FormControl("null", Validators.required),
-    libelle: new FormControl("null", Validators.required),
-    numero_telephone: new FormControl("null",
-      [Validators.pattern('^(77|78|76|70|75)[0-9]{7}$'),
-        Validators.required]),
-    numero_cni: new FormControl("null",
-      [Validators.required,
-        Validators.pattern('^(1|2)[0-9]{12}$')]),
-    email: new FormControl("null", [Validators.required,
+    firstName: new FormControl("", Validators.required),
+    lastName: new FormControl("", Validators.required),
+    login: new FormControl("", Validators.required),
+    role: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required,
       Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")]),
-    password: new FormControl("null", Validators.required)
+    password: new FormControl("", Validators.required)
   })
 
 
@@ -82,16 +66,16 @@ export class UtilisateurComponent implements OnInit {
   }
 
   showUtilisateur() {
-    this.utilisateurService.addUtilisateur(this.userForm.value, this.userForm.value.libelle).subscribe((data)=> {
+    this.utilisateurService.addUtilisateur(this.userForm.value, this.userForm.value.role).subscribe((data)=> {
       this.utilisateurList = data
       this.ngOnInit()
       this.userForm.reset()
     })
   }
 
-  deleteUtilisateur(id: number) {
+  deleteUtilisateur(login: string) {
    if (confirm("Voulez-vous vraiment supprimer l'utilisateur")){
-     this.utilisateurService.deleteUtilisateur(id).subscribe((data)=>{
+     this.utilisateurService.deleteUtilisateur(login).subscribe((data)=>{
        this.utilisateurList = data
        this.ngOnInit()
      })
@@ -106,16 +90,12 @@ export class UtilisateurComponent implements OnInit {
         let latest_date =this.datepipe.transform(this.utilisateurDetail.date_naissance, 'yyyy-MM-dd');
         this.userFormEdit= new FormGroup({
           id: new FormControl(this.utilisateurDetail.id),
-          prenom: new FormControl(this.utilisateurDetail.prenom, Validators.required),
-          nom: new FormControl(this.utilisateurDetail.nom, Validators.required),
-          date_naissance: new FormControl(latest_date, Validators.required),
-          lieu_naissance: new FormControl(this.utilisateurDetail.lieu_naissance, Validators.required),
-          sexe: new FormControl(this.utilisateurDetail.sexe, Validators.required),
-          numero_telephone: new FormControl(this.utilisateurDetail.numero_telephone, Validators.required),
-          numero_cni: new FormControl(this.utilisateurDetail.numero_cni, Validators.required),
+          firstName: new FormControl(this.utilisateurDetail.prenom, Validators.required),
+          lastName: new FormControl(this.utilisateurDetail.nom, Validators.required),
+          login: new FormControl(latest_date, Validators.required),
           email: new FormControl(this.utilisateurDetail.email, Validators.required),
           password: new FormControl(this.utilisateurDetail.password, Validators.required),
-          libelle: new FormControl(this.utilisateurDetail.role[0].libelle, Validators.required)
+          authorities: new FormControl(this.utilisateurDetail.role[0].role, Validators.required)
 
       })
         this.modalService.open(content)
@@ -124,23 +104,19 @@ export class UtilisateurComponent implements OnInit {
 
   updateUtilisateur(id: number) {
 
-    this.idRole = (this.userFormEdit.value.libelle == "ADMIN" ? 1 : (this.userFormEdit.value.libelle == "RELEVEUR" ? 2 : 3))
+    this.idRole = (this.userFormEdit.value.libelle == "ROLE_ADMIN" ? 1 :  2)
 
     const a =
         [
           {id: this.idRole, libelle: this.userFormEdit.value.libelle}
         ]
     this.userUpdate.id = this.userFormEdit.value.id
-    this.userUpdate.date_naissance = this.userFormEdit.value.date_naissance
     this.userUpdate.email = this.userFormEdit.value.email
-    this.userUpdate.numero_cni = this.userFormEdit.value.numero_cni
-    this.userUpdate.numero_telephone = this.userFormEdit.value.numero_telephone
-    this.userUpdate.lieu_naissance = this.userFormEdit.value.lieu_naissance
-    this.userUpdate.nom = this.userFormEdit.value.nom
-    this.userUpdate.prenom = this.userFormEdit.value.prenom
-    this.userUpdate.sexe = this.userFormEdit.value.sexe
+    this.userUpdate.lastName = this.userFormEdit.value.nom
+    this.userUpdate.firstName = this.userFormEdit.value.prenom
+    this.userUpdate.login = this.userFormEdit.value.sexe
     this.userUpdate.password = this.userFormEdit.value.password
-    this.userUpdate.role = a
+    this.userUpdate.authorities = a
     console.log(this.userUpdate )
 
     this.utilisateurService.EditUtilisateur(this.userUpdate, id).subscribe((data)=> {

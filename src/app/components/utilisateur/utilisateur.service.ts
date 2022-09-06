@@ -17,15 +17,15 @@ export class UtilisateurService{
   }
 
   public getUtilisateurs(): Observable<IUtilisateur[]>{
-    return this.http.get<IUtilisateur[]>(this.host + "/utilisateurs")
+    return this.http.get<IUtilisateur[]>(this.host + "admin/users")
   }
 
   public showUtilisateur(id: number): Observable<IUtilisateur>{
-    return this.http.get<IUtilisateur>(this.host + "/utilisateur/" + id)
+    return this.http.get<IUtilisateur>(this.host + "admin/users/" + id)
   }
 
   public addUtilisateur(utilisateur: IUtilisateur, libelle: ɵValue<FormControl<string | null>> | undefined): Observable<IUtilisateur> {
-    return this.http.post<IUtilisateur>(this.host + "/utilisateurs/" + libelle, utilisateur, {
+    return this.http.post<IUtilisateur>(this.host + "admin/users/" + libelle, utilisateur, {
       headers: {
         'Authorization': 'application/json',
         'Content-Type': 'application/json',
@@ -33,12 +33,12 @@ export class UtilisateurService{
     })
   }
 
-  public deleteUtilisateur(id: number){
-    return this.http.delete(this.host + "/utilisateurs/" + id)
+  public deleteUtilisateur(login: string){
+    return this.http.delete(this.host + "admin/users/" + login)
   }
 
   public EditUtilisateur(utilisateur: IUtilisateur, id: number): Observable<IUtilisateur>{
-    return this.http.patch<IUtilisateur>(this.host + "/utilisateurs/update/" + id, utilisateur, {
+    return this.http.patch<IUtilisateur>(this.host + "admin/users/" + id, utilisateur, {
         headers: {
           'Authorization': 'application/json',
           'Content-Type': 'application/json',

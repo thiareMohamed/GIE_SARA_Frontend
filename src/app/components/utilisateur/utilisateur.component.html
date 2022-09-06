@@ -23,9 +23,9 @@
           <th>Identifiant</th>
           <th>Prenom</th>
           <th>Nom</th>
+          <th>Nom d'utilisateur</th>
           <th>Role</th>
           <th>Email</th>
-          <th>Téléphone</th>
           <th>Action</th>
         </tr>
         </thead>
@@ -33,18 +33,18 @@
 
         <tr *ngFor="let utilisateur of utilisateurList | async">
           <td>{{utilisateur.id}}</td>
-          <td>{{utilisateur.prenom}}</td>
-          <td>{{utilisateur.nom}}</td>
+          <td>{{utilisateur.firstName}}</td>
+          <td>{{utilisateur.lastName}}</td>
+          <td>{{utilisateur.login}}</td>
           <td>
-            <p *ngFor="let role of utilisateur.role">
-              {{role.libelle}}
+            <p *ngFor="let role of utilisateur.authorities">
+              {{role}}
             </p>
           </td>
           <td>{{utilisateur.email}}</td>
-          <td>{{utilisateur.numero_telephone}}</td>
           <td>
             <i class="bi bi-pencil-square text-success" (click)="detailUtilisateur(utilisateur.id, contentEdit)"></i>
-            <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteUtilisateur(utilisateur.id)"></i>
+            <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteUtilisateur(utilisateur.login)"></i>
           </td>
         </tr>
 
@@ -64,23 +64,15 @@
     <div class="modal-body">
       <form [formGroup]="userForm">
 
-        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
-        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
-        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
-        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
-        <label>Sexe</label>
-        <select class="form-control mb-3" formControlName="sexe">
-          <option value="M">Masculin</option>
-          <option value="F">Féminin</option>
-        </select>
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="firstName" >
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="lastName">
+        <input type="text" class="form-control mb-3" placeholder="Nom d'utilisateur" formControlName="login">
         <label>Role</label>
-        <select class="form-control mb-3 text-black" formControlName="libelle">
-          <option value="ADMIN">ADMIN</option>
+        <select class="form-control mb-3 text-black" formControlName="role">
+          <option value="ROLE_ADMIN">ROLE_ADMIN</option>
           <option value="RELEVEUR">RELEVEUR</option>
           <option value="CAISSIER">CAISSIER</option>
         </select>
-        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
-        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
         <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
         <input type="password" class="form-control mb-3" placeholder="Mot de passe" formControlName="password">
       </form>
@@ -109,23 +101,15 @@
     <div class="modal-body" >
       <form [formGroup]="userFormEdit">
 
-        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom" >
-        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
-        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
-        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
-        <label>Sexe</label>
-        <select class="form-control mb-3" formControlName="sexe">
-          <option value="M">Masculin</option>
-          <option value="F">Féminin</option>
-        </select>
+        <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="firstName" >
+        <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="lastName">
+        <input type="text" class="form-control mb-3" placeholder="Nom d'utilisateur" formControlName="login">
         <label>Role</label>
-        <select class="form-control mb-3 text-black" formControlName="libelle">
-          <option value="ADMIN">ADMIN</option>
-          <option value="RELEVEUR">RELEVEUR</option>
-          <option value="CAISSIER">CAISSIER</option>
+        <select class="form-control mb-3 text-black" formControlName="role">
+          <option value="ROLE_ADMIN">ROLE_ADMIN</option>
+          <option value="ROLE_USER">RELEVEUR</option>
+          <option value="ROLE_USER">CAISSIER</option>
         </select>
-        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
-        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
         <input type="email" class="form-control mb-3" placeholder="Email" formControlName="email">
         <input type="password" class="form-control mb-3" placeholder="Mot de passe" formControlName="password">
       </form>
