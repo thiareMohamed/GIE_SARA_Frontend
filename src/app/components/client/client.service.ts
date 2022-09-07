@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class ClientService{
   host = environment.host
-  url = "/clients/";
+  url = "clients/";
 
   constructor(private http: HttpClient) {
   }

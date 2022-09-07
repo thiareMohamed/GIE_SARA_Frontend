@@ -44,9 +44,9 @@
           <td>{{client.prenom}}</td>
           <td>{{client.nom}}</td>
           <td>{{client.sexe}}</td>
-          <td>{{client.lieu_naissance}}</td>
-          <td>{{client.date_naissance | date: "short"}}</td>
-          <td>{{client.numero_telephone}}</td>
+          <td>{{client.lieuNaissance}}</td>
+          <td>{{client.dateNaissance | date: "short"}}</td>
+          <td>{{client.numeroTelephone}}</td>
           <td>
             <i class="btn bi bi-plus-square-fill text-success" (click)="ajoutCompteurPopup(client.id, contentAjoutCompteur)"></i>
           </td>
@@ -76,15 +76,15 @@
 
         <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
         <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
-        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
-        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="dateNaissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieuNaissance">
         <label>Sexe</label>
         <select class="form-control mb-3" formControlName="sexe">
           <option value="M">Masculin</option>
           <option value="F">Féminin</option>
         </select>
-        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
-        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numeroTelephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numeroCni">
       </form>
     </div>
     <div class="modal-footer">
@@ -112,15 +112,15 @@
 
         <input type="text" class="form-control mb-3" placeholder="Prenom" formControlName="prenom">
         <input type="text" class="form-control mb-3" placeholder="Nom" formControlName="nom">
-        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="date_naissance">
-        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieu_naissance">
+        <input type="date" class="form-control mb-3" placeholder="Date de Naissance" formControlName="dateNaissance">
+        <input type="text" class="form-control mb-3" placeholder="Lieu de naissance" formControlName="lieuNaissance">
         <label>Sexe</label>
         <select class="form-control mb-3" formControlName="sexe">
           <option value="M">Masculin</option>
           <option value="F">Féminin</option>
         </select>
-        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numero_telephone">
-        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numero_cni">
+        <input type="number" class="form-control mb-3" placeholder="Numéro de téléphone" formControlName="numeroTelephone">
+        <input type="number" class="form-control mb-3" placeholder="Numéro national d'identité" formControlName="numeroCni">
       </form>
     </div>
     <div class="modal-footer">

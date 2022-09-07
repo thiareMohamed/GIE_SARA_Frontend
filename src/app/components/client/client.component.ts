@@ -36,13 +36,13 @@ export class ClientComponent implements OnInit {
   clientForm = new FormGroup({
     prenom: new FormControl(null, Validators.required),
     nom: new FormControl("", Validators.required),
-    date_naissance: new FormControl("", Validators.required),
-    lieu_naissance: new FormControl("", Validators.required),
+    dateNaissance: new FormControl("", Validators.required),
+    lieuNaissance: new FormControl("", Validators.required),
     sexe: new FormControl("", Validators.required),
-    numero_telephone: new FormControl("",
+    numeroTelephone: new FormControl("",
       [Validators.pattern('^(77|78|76|70|75)[0-9]{7}$'),
         Validators.required]),
-    numero_cni: new FormControl("",
+    numeroCni: new FormControl("",
       [Validators.required,
         Validators.pattern('^(1|2)[0-9]{12}$')]),
   })
@@ -87,6 +87,9 @@ export class ClientComponent implements OnInit {
   }
 
   save(){
+    let lastName = this.clientForm.value.nom?.toUpperCase()
+    this.clientForm.value.nom = lastName
+
     this.clientService.addClient(this.clientForm.value).subscribe((res)=>{
       this.loadAll()
     })
@@ -96,16 +99,16 @@ export class ClientComponent implements OnInit {
 
     await this.clientService.showClient(id).subscribe((data)=>{
       this.clientDetail = data
-      let latest_date =this.datepipe.transform(this.clientDetail.date_naissance, 'yyyy-MM-dd');
+      let latest_date =this.datepipe.transform(this.clientDetail.dateNaissance, 'yyyy-MM-dd');
       this.clientFormEdit= new FormGroup({
         id: new FormControl(this.clientDetail.id),
         prenom: new FormControl(this.clientDetail.prenom, Validators.required),
         nom: new FormControl(this.clientDetail.nom, Validators.required),
-        date_naissance: new FormControl(latest_date, Validators.required),
-        lieu_naissance: new FormControl(this.clientDetail.lieu_naissance, Validators.required),
+        dateNaissance: new FormControl(latest_date, Validators.required),
+        lieuNaissance: new FormControl(this.clientDetail.lieuNaissance, Validators.required),
         sexe: new FormControl(this.clientDetail.sexe, Validators.required),
-        numero_telephone: new FormControl(this.clientDetail.numero_telephone, Validators.required),
-        numero_cni: new FormControl(this.clientDetail.numero_cni, Validators.required),
+        numeroTelephone: new FormControl(this.clientDetail.numeroTelephone, Validators.required),
+        numeroCni: new FormControl(this.clientDetail.numeroCni, Validators.required),
       })
       this.modalService.open(content)
     })
