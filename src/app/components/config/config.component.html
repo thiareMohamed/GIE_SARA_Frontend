@@ -51,9 +51,9 @@
             <tbody>
             <tr *ngFor="let forage of forages">
               <td>{{forage.id}}</td>
-              <td>{{forage.nom_site}}</td>
+              <td>{{forage.nomSite}}</td>
               <td>{{forage.capacite}}</td>
-              <td>{{forage.profondeur_forage}}</td>
+              <td>{{forage.profondeurForage}}</td>
               <td class="d-flex">
                 <i class="bi bi-pencil-square text-success btn" (click)="detailForage(forage.id, contenteditforage)"></i>
                 <i class="bi bi-trash3-fill text-danger mx-3 btn" (click)="deleteForage(forage.id)"></i>
@@ -105,7 +105,7 @@
             <tr>
               <th>Identifiant</th>
               <th>Libelle</th>
-              <th>prix_unitaire</th>
+              <th>Prix unitaire</th>
               <th>Action</th>
             </tr>
             </thead>
@@ -113,7 +113,7 @@
             <tr *ngFor="let abonnement of abonnements">
               <td>{{abonnement.id}}</td>
               <td>{{abonnement.libelle}}</td>
-              <td>{{abonnement.prix_unitaire}} F cfa</td>
+              <td>{{abonnement.prixUnitaire}} F cfa</td>
               <td class="d-flex">
                 <i class="bi bi-pencil-square text-success" (click)="detailAbonnement(abonnement.id, contenteditabonnement)"></i>
                 <i class="bi bi-trash3-fill text-danger mx-3" (click)="deleteAbonnement(abonnement.id)"></i>
@@ -188,17 +188,17 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="forageForm">
-        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nom_site">
+        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nomSite">
         <input type="number" class="form-control mb-3" placeholder="Longitude" formControlName="longitude">
         <input type="number" class="form-control mb-3" placeholder="Latitude" formControlName="latitude">
-        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="date_installation">
-        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeur_forage">
+        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="dateInstallation">
+        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeurForage">
         <input type="number" class="form-control mb-3" placeholder="Hauteur" formControlName="hauteur">
         <input type="number" class="form-control mb-3" placeholder="Capacite" formControlName="capacite">
-        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteur_sous_radier">
-        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="type_paratonerre">
-        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="type_reservoir">
-        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capacite_reservoir">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteurSousRadier">
+        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="typeParatonerre">
+        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="typeReservoir">
+        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capaciteReservoir">
         <div class="modal-footer">
           <button type="button"
                   [disabled]="forageForm.invalid"
@@ -222,17 +222,17 @@
     </div>
     <div class="modal-body">
       <form [formGroup]="forageFormEdit">
-        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nom_site">
+        <input type="text" class="form-control mb-3" placeholder="Nom du site" formControlName="nomSite">
         <input type="number" class="form-control mb-3" placeholder="Longitude" formControlName="longitude">
         <input type="number" class="form-control mb-3" placeholder="Latitude" formControlName="latitude">
-        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="date_installation">
-        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeur_forage">
+        <input type="date" class="form-control mb-3" placeholder="Date installation" formControlName="dateInstallation">
+        <input type="number" class="form-control mb-3" placeholder="Profondeur_forage" formControlName="profondeurForage">
         <input type="number" class="form-control mb-3" placeholder="Hauteur" formControlName="hauteur">
         <input type="number" class="form-control mb-3" placeholder="Capacite" formControlName="capacite">
-        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteur_sous_radier">
-        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="type_paratonerre">
-        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="type_reservoir">
-        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capacite_reservoir">
+        <input type="number" class="form-control mb-3" placeholder="Hauteur sous radier" formControlName="hauteurSousRadier">
+        <input type="text" class="form-control mb-3" placeholder="Type_Paratonerre" formControlName="typeParatonerre">
+        <input type="text" class="form-control mb-3" placeholder="Type reservoir" formControlName="typeReservoir">
+        <input type="number" class="form-control mb-3" placeholder="Capacite reservoir" formControlName="capaciteReservoir">
         <div class="modal-footer">
           <button type="button"
                   (click)="editForage(forageFormEdit.value.id)"
@@ -260,7 +260,7 @@
     <div class="modal-body">
       <form [formGroup]="abonnementForm">
         <input type="text" class="form-control mb-3" placeholder="Libelle" formControlName="libelle">
-        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prix_unitaire">
+        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prixUnitaire">
 
         <div class="modal-footer">
           <button type="button"
@@ -286,7 +286,7 @@
     <div class="modal-body">
       <form [formGroup]="abonnementFormEdit">
         <input type="text" class="form-control mb-3" placeholder="Libelle" formControlName="libelle">
-        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prix_unitaire">
+        <input type="number" class="form-control mb-3" placeholder="Prix unitaire" formControlName="prixUnitaire">
 
         <div class="modal-footer">
           <button type="button"

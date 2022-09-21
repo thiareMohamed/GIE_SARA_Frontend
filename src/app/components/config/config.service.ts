@@ -12,9 +12,9 @@ import {IClient} from "../../../model/IClient";
 })
 export class ConfigService {
   host = environment.host
-  urlVillage = "/villages/";
-  urlForage = "/forages/";
-  urlAbonnement = "/abonnements/";
+  urlVillage = "villages/";
+  urlForage = "forages/";
+  urlAbonnement = "abonnements/";
 
   constructor(private http: HttpClient) {
   }

@@ -9,6 +9,58 @@
     </div>
   </div>
   <div class="contenu">
-    hello
+    <div class="d-block d-md-flex p-3 justify-content-between">
+      <h4 class="text">Liste des compteurs</h4>
+      <div class="d-block d-md-flex">
+        <button type="button"  class="btn btns mx-5 text-light">Ajouter compteur</button>
+      </div>
+    </div>
+    <div class="p-5 tablel" *ngIf="compteurs; else notFound">
+      <table class="table table-striped p-3">
+        <thead>
+        <tr>
+          <th>Identifiant</th>
+          <th>Type compteur</th>
+          <th>Date d'abonnement</th>
+          <th>Marque</th>
+          <th>Statut</th>
+          <th>Client</th>
+          <th>Forage</th>
+          <th>Village</th>
+          <th>Abonnement</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let compteur of compteurs">
+          <td>{{compteur.id}}</td>
+          <td>{{compteur.typeCompteur}}</td>
+          <td>{{compteur.dateAbonnement|  date: "short"}}</td>
+          <td>{{compteur.marque}}</td>
+          <td>
+            <button class="btn bg-success text-light" *ngIf="compteur.statut; else btnFalse">
+              {{compteur.statut}}
+            </button>
+            <ng-template #btnFalse>
+              <button class="btn bg-danger text-light">
+                {{compteur.statut}}
+              </button>
+            </ng-template>
+          </td>
+          <td>{{compteur.client.nom}} {{compteur.client.prenom }}</td>
+          <td>{{compteur.forage.nomSite}}</td>
+          <td>{{compteur.village.nom}}</td>
+          <td>{{compteur.abonnement.libelle}}</td>
+          <td class="d-flex">
+            <i class="btn bi bi-pencil-square text-success"></i>
+            <i class="btn bi bi-trash3-fill text-danger mx-3"></i>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <ng-template #notFound>
+    <p>Aucun resultat trouvé</p>
+  </ng-template>
 </div>

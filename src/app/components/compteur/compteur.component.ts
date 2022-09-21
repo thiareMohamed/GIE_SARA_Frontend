@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {CompteurService} from "./compteur.service";
 
 @Component({
   selector: 'app-compteur',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CompteurComponent implements OnInit {
 
-  constructor() { }
+  compteurs: any = []
+  constructor(private compteurService: CompteurService) { }
 
   ngOnInit(): void {
+    this.loadAll()
   }
 
+  loadAll() {
+    this.compteurService.getCompteurs().subscribe((res) =>{
+      this.compteurs = res
+    })
+  }
 }

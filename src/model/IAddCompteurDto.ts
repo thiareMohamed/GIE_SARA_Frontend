@@ -1,8 +1,8 @@
 export interface IAddCompteurDto{
   id?: number | null | undefined;
-  type_compteur?: string | null | undefined;
-  date_abonnement?: Date | null | undefined;
-  marque_compteur?: string | null | undefined;
+  typeCompteur?: string | null | undefined;
+  dateAbonnement?: Date | null | undefined;
+  marque?: string | null | undefined;
   statut?: boolean;
   idForage?: number | null | undefined;
   idVillage?: number | null | undefined;

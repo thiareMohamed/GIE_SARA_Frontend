@@ -146,14 +146,14 @@
     <div class="modal-body">
       <form [formGroup]="compteurForm">
 
-        <input type="text" class="form-control mb-3" placeholder="Type compteur" formControlName="type_compteur">
-        <input type="text" class="form-control mb-3" placeholder="Marque compteur" formControlName="marque_compteur">
-        <input type="date" class="form-control mb-3" placeholder="Date d'abonnement" formControlName="date_abonnement">
+        <input type="text" class="form-control mb-3" placeholder="Type compteur" formControlName="typeCompteur">
+        <input type="text" class="form-control mb-3" placeholder="Marque compteur" formControlName="marque">
+        <input type="date" class="form-control mb-3" placeholder="Date d'abonnement" formControlName="dateAbonnement">
 
         <label>Forage</label>
         <select class="form-control mb-3" formControlName="idForage">
           <option  *ngFor="let forage of forages | async" value="{{forage.id}}">
-            {{forage.nom_site}}
+            {{forage.nomSite}}
           </option>
         </select>
 

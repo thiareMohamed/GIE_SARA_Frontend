@@ -33,17 +33,17 @@ export class ConfigComponent implements OnInit {
   forage: IForage = Object.create(null)
   forageDetail: IForage = Object.create(null)
   forageForm = new FormGroup({
-    nom_site: new FormControl("", Validators.required),
+    nomSite: new FormControl("", Validators.required),
     longitude: new FormControl("", Validators.required),
     latitude: new FormControl("", Validators.required),
-    date_installation: new FormControl("", Validators.required),
-    profondeur_forage: new FormControl("", Validators.required),
+    dateInstallation: new FormControl("", Validators.required),
+    profondeurForage: new FormControl("", Validators.required),
     hauteur: new FormControl("", Validators.required),
     capacite: new FormControl("", Validators.required),
-    hauteur_sous_radier: new FormControl("", Validators.required),
-    type_paratonerre: new FormControl("", Validators.required),
-    type_reservoir: new FormControl("", Validators.required),
-    capacite_reservoir: new FormControl("", Validators.required),
+    hauteurSousRadier: new FormControl("", Validators.required),
+    typeParatonerre: new FormControl("", Validators.required),
+    typeReservoir: new FormControl("", Validators.required),
+    capaciteReservoir: new FormControl("", Validators.required),
   })
   forageFormEdit: any
 
@@ -53,7 +53,7 @@ export class ConfigComponent implements OnInit {
   abonnementDetail: IAbonnement = Object.create(null)
   abonnementForm = new FormGroup({
     libelle: new FormControl("", Validators.required),
-    prix_unitaire: new FormControl("", Validators.required),
+    prixUnitaire: new FormControl("", Validators.required),
   })
   abonnementFormEdit: any
 
@@ -138,17 +138,17 @@ export class ConfigComponent implements OnInit {
       this.forageDetail = res
       this.forageFormEdit = new FormGroup({
         id: new FormControl(this.forageDetail.id),
-        nom_site: new FormControl(this.forageDetail.nom_site),
+        nomSite: new FormControl(this.forageDetail.nomSite),
         longitude: new FormControl(this.forageDetail.longitude),
         latitude: new FormControl(this.forageDetail.latitude),
-        date_installation: new FormControl(this.forageDetail.date_installation),
-        profondeur_forage: new FormControl(this.forageDetail.profondeur_forage),
+        dateInstallation: new FormControl(this.forageDetail.dateInstallation),
+        profondeurForage: new FormControl(this.forageDetail.profondeurForage),
         hauteur: new FormControl(this.forageDetail.hauteur),
         capacite: new FormControl(this.forageDetail.capacite),
-        hauteur_sous_radier: new FormControl(this.forageDetail.hauteur_sous_radier),
-        type_paratonerre: new FormControl(this.forageDetail.type_paratonerre),
-        type_reservoir: new FormControl(this.forageDetail.type_reservoir),
-        capacite_reservoir: new FormControl(this.forageDetail.capacite_reservoir),
+        hauteurSousRadier: new FormControl(this.forageDetail.hauteurSousRadier),
+        typeParatonerre: new FormControl(this.forageDetail.typeParatonerre),
+        typeReservoir: new FormControl(this.forageDetail.typeReservoir),
+        capaciteReservoir: new FormControl(this.forageDetail.capaciteReservoir),
 
       })
       this.open(content)
@@ -182,7 +182,7 @@ export class ConfigComponent implements OnInit {
       this.abonnementFormEdit = new FormGroup({
         id: new FormControl(this.abonnementDetail.id),
         libelle: new FormControl(this.abonnementDetail.libelle),
-        prix_unitaire: new FormControl(this.abonnementDetail.prix_unitaire),
+        prixUnitaire: new FormControl(this.abonnementDetail.prixUnitaire),
       })
       this.open(content)
     })

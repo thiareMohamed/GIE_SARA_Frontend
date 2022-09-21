@@ -50,9 +50,9 @@ export class ClientComponent implements OnInit {
 
   compteurDto: IAddCompteurDto = Object.create(null);
   compteurForm = new FormGroup({
-    type_compteur: new FormControl(null, Validators.required),
-    date_abonnement: new FormControl(null, Validators.required),
-    marque_compteur: new FormControl("", Validators.required),
+    typeCompteur: new FormControl(null, Validators.required),
+    dateAbonnement: new FormControl(null, Validators.required),
+    marque: new FormControl("", Validators.required),
 
     idForage: new FormControl("", Validators.required),
     idVillage: new FormControl("", Validators.required),
@@ -139,16 +139,22 @@ export class ClientComponent implements OnInit {
   }
 
   ajoutCompteur() {
-    this.compteurDto.type_compteur = this.compteurForm.value.type_compteur
-    this.compteurDto.date_abonnement = this.compteurForm.value.date_abonnement
-    this.compteurDto.marque_compteur = this.compteurForm.value.marque_compteur
+    this.compteurDto.typeCompteur = this.compteurForm.value.typeCompteur
+    this.compteurDto.dateAbonnement = this.compteurForm.value.dateAbonnement
+    this.compteurDto.marque = this.compteurForm.value.marque
     this.compteurDto.statut = true
     this.compteurDto.idForage = parseInt(<string>this.compteurForm.value.idForage)
     this.compteurDto.idVillage = parseInt(<string>this.compteurForm.value.idVillage)
     this.compteurDto.idAbonnement = parseInt(<string>this.compteurForm.value.idAbonnement)
 
     console.log("==================")
-    console.log(this.compteurForm.value)
+    console.log(this.compteurDto)
+
+
+
+    this.compteurService.createCompteur(this.compteurDto).subscribe((res) =>{
+      this.compteurForm.reset()
+    })
   }
 
   ajoutCompteurPopup(id: number, content: any) {
