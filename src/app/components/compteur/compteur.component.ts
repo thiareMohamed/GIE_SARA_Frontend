@@ -26,4 +26,11 @@ export class CompteurComponent implements OnInit {
       this.ngOnInit()
     })
   }
+
+  setStatutCompteur(id: number) {
+    console.log("coucou")
+    this.compteurService.setStatus(id).subscribe((res)=>{
+        this.ngOnInit()
+    })
+  }
 }

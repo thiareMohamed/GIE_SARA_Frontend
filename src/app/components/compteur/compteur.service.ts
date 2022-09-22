@@ -31,4 +31,9 @@ export class CompteurService {
   public deleteCompteur(id: number){
     return this.http.delete(this.host + this.url + id)
   }
+
+  public setStatus(id: number) {
+    console.log("dep")
+    return this.http.get(`${this.host + this.url}set-status/${id}`)
+  }
 }

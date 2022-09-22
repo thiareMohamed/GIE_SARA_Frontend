@@ -38,11 +38,11 @@
           <td>{{compteur.dateAbonnement|  date: "short"}}</td>
           <td>{{compteur.marque}}</td>
           <td>
-            <button class="btn bg-success text-light" *ngIf="compteur.statut; else btnFalse">
+            <button class="btn bg-success text-light" *ngIf="compteur.statut; else btnFalse" (click)="setStatutCompteur(compteur.id)">
               {{compteur.statut}}
             </button>
             <ng-template #btnFalse>
-              <button class="btn bg-danger text-light">
+              <button class="btn bg-danger text-light" (click)="setStatutCompteur(compteur.id)">
                 {{compteur.statut}}
               </button>
             </ng-template>
