@@ -20,4 +20,10 @@ export class CompteurComponent implements OnInit {
       this.compteurs = res
     })
   }
+
+  delete(id: number) {
+    this.compteurService.deleteCompteur(id).subscribe((res)=>{
+      this.ngOnInit()
+    })
+  }
 }

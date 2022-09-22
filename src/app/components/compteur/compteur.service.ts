@@ -27,4 +27,8 @@ export class CompteurService {
   public getCompteurs(): Observable<ICompteur>{
     return this.http.get(this.host + this.url)
   }
+
+  public deleteCompteur(id: number){
+    return this.http.delete(this.host + this.url + id)
+  }
 }
