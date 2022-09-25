@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {LOCALE_ID, NgModule} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -16,7 +16,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ConfigComponent } from './components/config/config.component';
 import {authInterceptorProviders} from "./guard/auth.intercenptor";
 import {AdminGuard} from "./guard/admin.guard";
+import { registerLocaleData } from '@angular/common';
+import localeFr from '@angular/common/locales/fr';
 
+// the second parameter 'fr' is optional
+registerLocaleData(localeFr, 'fr');
 
 
 @NgModule({
@@ -84,7 +88,7 @@ import {AdminGuard} from "./guard/admin.guard";
     NgbModule,
     ReactiveFormsModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, {provide: LOCALE_ID, useValue: 'fr' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

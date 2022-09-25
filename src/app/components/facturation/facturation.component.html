@@ -8,7 +8,91 @@
       </div>
     </div>
   </div>
-  <div class="contenu">
-    hello
+  <div class="row">
+    <div class="contenu col-md-9 col-12">
+      <div class="d-block d-md-flex p-3 justify-content-between">
+        <h4 class="text">Liste des compteurs</h4>
+        <div class="d-block d-md-flex">
+          <!--        <button type="button"  class="btn btns mx-5 text-light">Ajouter compteur</button>-->
+        </div>
+      </div>
+      <div class="p-5 tablel" *ngIf="factures; else notFound">
+        <table class="table table-striped p-3">
+          <thead>
+          <tr>
+            <th>Code facture</th>
+            <th>Numéro compteur</th>
+            <th>Client</th>
+            <th>Ancien index</th>
+            <th>Nouveau index</th>
+            <th>Statut</th>
+            <th>Mois</th>
+            <th>Année</th>
+            <th>Montant</th>
+            <th>Actions</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let facture of factures">
+            <td>{{facture.code}}</td>
+            <td>{{facture.compteur.id}}</td>
+            <td>
+              {{facture.compteur.client.prenom}}
+              {{facture.compteur.client.nom}}
+            </td>
+            <td>{{facture.ancienIndex}}</td>
+            <td>{{facture.nouvelIndex}}</td>
+            <td>
+              <button class="btn bg-success text-light" *ngIf="facture.statut; else btnFalse">
+                Payée
+              </button>
+              <ng-template #btnFalse>
+                <button class="btn bg-danger text-light">
+                  Non payée
+                </button>
+              </ng-template>
+            </td>
+            <td>{{facture.dateDernierReleve|  date: "LLLL" : "" }}</td>
+            <td>{{facture.dateDernierReleve|  date: "y" : "" }}</td>
+            <td>{{(facture.nouvelIndex - facture.ancienIndex) * facture.compteur.abonnement.prixUnitaire}} F cfa</td>
+            <td class="d-flex">
+              <i class="bi bi-eye-fill text-black mx-3"></i>
+              <i class="btn bi bi-pencil-square text-success"></i>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-3">
+      <form class="contenu p-4" [formGroup]="factureForm">
+        <h5 class="text-light">Enregistrer une facture</h5>
+        <input type="number" class="form-control mb-3" placeholder="Numero compteur" formControlName="numeroFacture">
+        <input type="number" class="form-control mb-3" placeholder="Nouveau index" formControlName="newIndex">
+        <button class="btn btns text-light w-100"
+                [disabled]="factureForm.invalid"
+                (click)="save()"
+        >
+          Enregistrer
+        </button>
+      </form>
+      <form class="contenu p-4 mt-3">
+        <h5 class="text-light">Enregistrer une facture</h5>
+        <input type="number" class="form-control mb-3" placeholder="Entrez le numero de la facture">
+        <button class="btn btns text-light w-100">
+          Télécharger
+        </button>
+      </form>
+      <form class="contenu p-4 mt-3">
+        <h5 class="text-light">Enregistrer une facture</h5>
+        <input type="Date" class="form-control mb-3">
+        <button class="btn btns text-light w-100">
+          Télécharger tous
+        </button>
+      </form>
+    </div>
   </div>
+  <ng-template #notFound>
+    <p>Aucun resultat trouvé</p>
+  </ng-template>
 </div>
