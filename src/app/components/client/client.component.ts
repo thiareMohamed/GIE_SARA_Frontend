@@ -154,6 +154,7 @@ export class ClientComponent implements OnInit {
 
     this.compteurService.createCompteur(this.compteurDto).subscribe((res) =>{
       this.compteurForm.reset()
+      this.ngOnInit()
     })
   }
 
