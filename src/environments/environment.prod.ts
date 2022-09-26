@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: "https://gie-sara.herokuapp.com/api/"
+  host: "http://localhost:8080/api/"
 };
