@@ -16,7 +16,7 @@ export class LoginService {
 
   //current-user
   public getCurrentUser() {
-    return this.http.get(this.host + "current-user")
+    return this.http.get(this.host + "account")
   }
 
   public generateToken(loginData: any) {
