@@ -47,22 +47,22 @@ export class LoginComponent implements OnInit {
     //  login...
       this.login.loginUser(data.id_token);
 
-      this.login.getCurrentUser().subscribe(
-        (user: any) => {
-          this.login.setUser(user);
-          console.log(user)
-          let nbr = this.login.getUserRole().length - 1
-          if (this.login.getUserRole()[nbr].name == "ROLE_ADMIN") {
+      // this.login.getCurrentUser().subscribe(
+      //   (user: any) => {
+      //     this.login.setUser(user);
+      //     console.log(user)
+      //     let nbr = this.login.getUserRole().length - 1
+      //     if (this.login.getUserRole()[nbr].name == "ROLE_ADMIN") {
             window.location.href = "/accueil"
-          }
-          else if (this.login.getUserRole()[nbr].name == "ROLE_USER") {
-            window.location.href = "/accueil"
-          }else {
-            this.login.logout()
-            this.router.navigate(['login'])
-          }
-        }
-      )
+      //     }
+      //     else if (this.login.getUserRole()[nbr].name == "ROLE_USER") {
+      //       window.location.href = "/accueil"
+      //     }else {
+      //       this.login.logout()
+      //       this.router.navigate(['login'])
+      //     }
+      //   }
+      // )
     },
       (error)=> {
         console.log("Erreur !");
