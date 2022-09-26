@@ -55,6 +55,14 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stage.ts"
+                }
+              ]
+            },
             "development": {
               "buildOptimizer": false,
               "optimization": false,
@@ -69,6 +77,9 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "staging": {
+              "browserTarget": "angular-environment-example:build:staging"
+            },
             "production": {
               "browserTarget": "GIE_SARA_Frontend:build:production"
             },
