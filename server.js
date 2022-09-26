@@ -5,4 +5,5 @@ app.get('/*', (req, res)=>{
   res.sendFile(__dirname+'/dist/heroku-angular/index.html');
 });
 
+app.use(cors());
 app.listen(process.env.PORT || 8080)
